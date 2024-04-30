@@ -72,7 +72,7 @@ function Signup({navigation}) {
                     </TouchableOpacity>
               )
             }
-            <Text style={styles.titre}>Forget Password</Text>
+            <Text style={styles.titre}onPress={() => navigation.navigate('Forgetpassword')}>Forget Password</Text>
             <Text style={styles.titre1} onPress={() => navigation.navigate('Login')}>Don't have an account ?</Text>
         </ScrollView>
     </KeyboardAvoidingView>

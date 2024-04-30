@@ -3,23 +3,6 @@ import {StyleSheet, View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoi
 import { auth } from '../../config/firebase';
 import { signOut } from 'firebase/auth';
 function PageUser({navigation}) {
-    const handleTakePhoto = () => {
-        console.log('Taking photo...');
-        // Ici, vous mettriez le code pour lancer l'appareil photo
-    };
-
-    const handleScanBarcode = () => {
-        console.log('Scanning barcode...');
-        // Ici, vous mettriez le code pour scanner un code-barre
-    };
-
-    const handleEdit = () => {
-        console.log('Editing...');
-        // Ici, vous mettriez le code pour permettre à l'utilisateur d'éditer ses
-    };
-    /*const handleLogout = async () => {
-          await signOut(auth);
-    }*/
     const handleLogout = async () => {
       console.log('Attempting to log out...');
       try {
@@ -34,19 +17,12 @@ function PageUser({navigation}) {
         <ScrollView contentContainerStyle={styles.container}>
           <View style={styles.UserInterface1}> 
             <Text style={styles.Shop}>ShopSavvy</Text>
-            <TouchableOpacity style={styles.logout} onPress={handleLogout}>
-                <Text style={styles.titre1}>Logout</Text>
-            </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.UserInterface2}> 
               <Text style={styles.text}>Hello !</Text>
               <Text style={styles.textT}>Discover shopping!</Text>
           </TouchableOpacity>
           <Text style={styles.title}>Options de Reconnaissance</Text>
-          <TouchableOpacity style={styles.UserButton} onPress={handleTakePhoto}>
-             <Image source={require('../assets/camera.png')} style={styles.icon} />
-             <Text style={styles.UserButtonText}>Take Photo</Text>
-          </TouchableOpacity>
           <TouchableOpacity style={styles.UserButton} onPress={() => navigation.navigate('TakeImage')}>
               <Image source={require('../assets/barcode.png')} style={styles.icon} /> 
               <Text style={styles.UserButtonText}>Scan Barcode</Text>
@@ -54,7 +30,11 @@ function PageUser({navigation}) {
           <TouchableOpacity style={styles.UserButton} onPress={() => navigation.navigate('Add')}>
               <Image source={require('../assets/add.png')} style={styles.icon} />  
               <Text style={styles.UserButtonText}>Add</Text>
-           </TouchableOpacity>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.UserButton} onPress={handleLogout}>
+              <Image source={require('../assets/left-arrow.png')} style={styles.icon} />
+              <Text style={styles.UserButtonText}>Logout</Text>
+          </TouchableOpacity>
           <View style={styles.Container2}>
               <TouchableOpacity style={styles.partie} onPress={() => navigation.navigate('Parametre')}> 
                 <Image source={require('../assets/setting.png')} style={styles.icon3} /> 
@@ -87,17 +67,6 @@ const styles = StyleSheet.create({
     Color:'#FBF9FB',
     alignSelf: 'flex-start',
     marginLeft:-30,
-  },
-  logout:{
-    backgroundColor: '#FBF9FB',
-    padding: 10,
-    borderRadius: 12,
-    alignSelf: 'flex-start',
-    marginLeft:140,
-  },
-  titre1:{
-    fontSize: 16,
-    fontWeight:'bold',
   },
   UserButton:{
     width: '70%',

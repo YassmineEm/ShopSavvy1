@@ -12,6 +12,7 @@ import Parametre from '../app/Screens/Parametre';
 import Historique from '../app/Screens/Historique';
 import TakeImage from '../app/Screens/TakeImage';
 import Add from '../app/Screens/Add';
+import Forgetpassword from '../app/Screens/Forgetpassword';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import { setUser } from '../redux/slices/user';
@@ -71,6 +72,7 @@ const RootStack = () => {
                     <Stack.Screen name='Welcome'component={Welcome}/>
                     <Stack.Screen name='Signup'component={Signup}/>
                     <Stack.Screen name='Login'component={login}/>
+                    <Stack.Screen name='Forgetpassword'component={Forgetpassword}/>
                 </Stack.Navigator>
             </NavigationContainer>
         );
