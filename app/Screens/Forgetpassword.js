@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
-import {StyleSheet, View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView,ScrollView} from 'react-native';
+import {StyleSheet, View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView,ScrollView , Alert} from 'react-native';
+import { auth } from '../../config/firebase';
+import { sendPasswordResetEmail } from 'firebase/auth';
 function Forgetpassword({navigation}) {
     const [email, setEmail] = useState('');
+     const handleResetPassword = () => {
+        sendPasswordResetEmail( auth,email)
+        .then(() => {
+            Alert.alert('Email envoyé' , 'Un email de réinitialisation de mot de passe a été envoyé à votre adresse.')
+        })
+        .catch((error) => {
+            Alert.alert('Erreur', error.message);
+        });
+     };
     return (
         <KeyboardAvoidingView
         behavior="height" // Comportement spécifique pour Android
@@ -18,7 +29,7 @@ function Forgetpassword({navigation}) {
                 />
             </View>
             <TouchableOpacity style={styles.Button}>
-                    <Text style={styles.ButtonText}>Send Recovery email</Text>
+                    <Text style={styles.ButtonText} onPress={() => handleResetPassword()}>Send Recovery email</Text>
             </TouchableOpacity>
          </ScrollView>
         </KeyboardAvoidingView>

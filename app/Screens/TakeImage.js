@@ -67,15 +67,19 @@ function TakeImage({navigation}) {
                    <View style={styles.productContainer}>
                         <View style={styles.row}>
                            <Text style={styles.label}>Product Name:</Text>
-                           <Text style={styles.value}>{productData.Nom}</Text>
+                           <Text style={styles.value}>{productData.Nom}.</Text>
                         </View>
                         <View style={styles.row}>
                           <Text style={styles.label}>Price:</Text>
-                          <Text style={styles.value}>{productData.Prix} DH</Text>
+                          <Text style={styles.value}>{productData.Prix} DH .</Text>
+                        </View>
+                        <View style={styles.row}>
+                          <Text style={styles.label}>Pays:</Text>
+                          <Text style={styles.value}>{productData.Pays} .</Text>
                         </View>
                         <View style={styles.row}>
                            <Text style={styles.label}>Constituants:</Text>
-                           <Text style={styles.value}>{Array.isArray(productData.Constituants) ? productData.Constituants.join(', ') : productData.Constituants}</Text>
+                           <Text style={styles.value}>{Array.isArray(productData.Constituants) ? productData.Constituants.join(', ') : productData.Constituants} .</Text>
                         </View>
                    </View>
                    <Button title="Close" onPress={hideProductModal} />
@@ -160,12 +164,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginRight: 10,
-        color: '#333',
+        color: '#26B6B5',
     },
     value: {
         fontSize: 16,
         color: '#666', 
+        width:200,
     },
-
 })
 export default TakeImage;

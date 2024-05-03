@@ -31,6 +31,10 @@ function PageUser({navigation}) {
               <Image source={require('../assets/add.png')} style={styles.icon} />  
               <Text style={styles.UserButtonText}>Add</Text>
           </TouchableOpacity>
+          <TouchableOpacity style={styles.UserButton} onPress={() => navigation.navigate('Panier')}>
+              <Image source={require('../assets/Panier.png')} style={styles.icon} />  
+              <Text style={styles.UserButtonText}>Panier</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.UserButton} onPress={handleLogout}>
               <Image source={require('../assets/left-arrow.png')} style={styles.icon} />
               <Text style={styles.UserButtonText}>Logout</Text>
@@ -106,7 +110,7 @@ const styles = StyleSheet.create({
   UserInterface2:{
     width: '80%',
     padding: 22,
-    backgroundColor: '#FCF0C0',
+    backgroundColor: '#DBD3DC',
     borderTopRightRadius:30,
     borderBottomRightRadius: 30,
     borderBottomLeftRadius: 30,
