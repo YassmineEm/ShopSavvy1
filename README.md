@@ -1,5 +1,5 @@
 <h3 align="center" color="#C70608">  Application Web de Reconnaissance de Produits </h3>
-<p>  L'objectif de ce projet est de concevoir et développer une application web intelligente offrant aux utilisateurs la possibilité de reconnaître aisément des produits spécifiques lors de leurs achats.L'application utilisera la technologie de reconnaissance d'images ou scanne d’un code-barres pour offrir une expérience utilisateur intuitive et efficace. Grâce à ces technologies innovantes, les utilisateurs pourront identifier rapidement et précisément les produits qui les intéressent. </p>
+<p><img src="app/assets/store.png" width="80" height="80"L'objectif de ce projet est de concevoir et développer une application web intelligente offrant aux utilisateurs la possibilité de reconnaître aisément des produits spécifiques lors de leurs achats.L'application utilisera la technologie de reconnaissance d'images ou scanne d’un code-barres pour offrir une expérience utilisateur intuitive et efficace. Grâce à ces technologies innovantes, les utilisateurs pourront identifier rapidement et précisément les produits qui les intéressent. </p>
 <h3 align="left"  color="#C70608">Objectifs :</h3>
 <ul>
   <li> Développer une interface conviviale et intuitive pour les utilisateurs finaux.</li>
