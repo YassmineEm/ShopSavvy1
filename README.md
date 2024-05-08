@@ -10,3 +10,5 @@
   <li>Les produits ajoutés par les utilisateurs doivent être soumis à une validation par l'administrateur avant d'être approuvés et ajoutés à la base de données.</li>
   <li>Maintenir un historique des validations des produits, y compris les détails de l'utilisateur ayant soumis le produit, la date de soumission, la décision de validation de l'administrateur. </li>
 </ul>
+Le prototype : 
+          https://www.figma.com/file/PvlRLamSolWNizZN018rDV/Untitled?type=design&node-id=38%3A11&mode=design&t=0MklWeVcyTWKXAHG-1
