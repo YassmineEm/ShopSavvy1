@@ -7,7 +7,6 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../config/firebase';
 import Loading from '../components/loading';
 function Signup({navigation}) {
-    // Définissez l'état local pour l'email et le mot de passe
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {userLoading} = useSelector(state =>state.user);
@@ -34,7 +33,7 @@ function Signup({navigation}) {
     };
     return (
         <KeyboardAvoidingView
-        behavior="height" // Comportement spécifique pour Android
+        behavior="height" 
         style={{flex: 1}}
         >
         <ScrollView>
@@ -81,12 +80,12 @@ function Signup({navigation}) {
 const styles = StyleSheet.create({
     
     logo: {
-        marginTop:  30, // Positionne le logo à 20 pixels du haut
+        marginTop:  30, 
         alignSelf: 'flex-start',
         marginLeft: 24,
         width:110,
         height:110,
-        resizeMode: 'contain', // Assurez-vous que le logo s'adapte bien sans être déformé
+        resizeMode: 'contain', 
     },
     title: {
         alignSelf: 'flex-start',
@@ -146,7 +145,7 @@ const styles = StyleSheet.create({
     errorText:{
         fontSize:17,
         color:'red',
-        marginLeft:91,
+        textAlign: 'center',
         marginTop:7,
     }
 })

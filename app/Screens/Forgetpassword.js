@@ -15,7 +15,7 @@ function Forgetpassword({navigation}) {
      };
     return (
         <KeyboardAvoidingView
-        behavior="height" // Comportement spécifique pour Android
+        behavior="height" 
         style={{flex: 1}}
         >
          <ScrollView style={styles.container}>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         borderRadius:30,
     },
     ButtonText:{
-         color: '#FFFFFF', // Couleur du texte
+         color: '#FFFFFF',
          fontWeight: 'bold',
          fontSize:20,
          marginLeft:28,

@@ -46,8 +46,8 @@ function Add({navigation}) {
                     Pays: country,
                     Prix: price,
                     Constituants: constituants
-                });
-                // Clear input fields
+                } , { id: scannedData });
+                
                 setProductName('');
                 setCountry('');
                 setPrice('');

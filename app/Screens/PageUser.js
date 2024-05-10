@@ -35,21 +35,14 @@ function PageUser({navigation}) {
               <Image source={require('../assets/Panier.png')} style={styles.icon} />  
               <Text style={styles.UserButtonText}>Panier</Text>
           </TouchableOpacity>
+          <TouchableOpacity style={styles.UserButton} onPress={() => navigation.navigate('Historique')}>
+              <Image source={require('../assets/notification.png')} style={styles.icon} />  
+              <Text style={styles.UserButtonText}>Historique</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.UserButton} onPress={handleLogout}>
               <Image source={require('../assets/left-arrow.png')} style={styles.icon} />
               <Text style={styles.UserButtonText}>Logout</Text>
           </TouchableOpacity>
-          <View style={styles.Container2}>
-              <TouchableOpacity style={styles.partie} onPress={() => navigation.navigate('Parametre')}> 
-                <Image source={require('../assets/setting.png')} style={styles.icon3} /> 
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.partie1} onPress={() => navigation.navigate('Historique')}> 
-                <Image source={require('../assets/file.png')} style={styles.icon3} /> 
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.partie}> 
-                <Image source={require('../assets/diskette.png')} style={styles.icon3} /> 
-              </TouchableOpacity>
-          </View>
         </ScrollView>
     );
 }
@@ -77,7 +70,7 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: '#00ff00', // Exemple de couleur de fond
     borderRadius: 25,
-    marginTop: 20, // Ajustez selon l'espacement souhaité
+    marginTop: 34, // Ajustez selon l'espacement souhaité
     flexDirection: 'row', // Organise les éléments enfants horizontalement
     alignItems: 'center',
     alignSelf: 'center', // Centre le bouton lui-même dans son conteneur parent
@@ -117,34 +110,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top:80,
   },
-  Container2:{
-    position:'absolute',
-    bottom:0,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    paddingHorizontal: 30, // Ajoute un padding horizontal pour créer un espace aux extrémités
-  },
-  partie:{
-    backgroundColor:'#00ff00',
-    width:60,
-    height:88,
-    alignItems: 'center',
-    justifyContent:'center',
-  },
-  partie1:{
-    backgroundColor:'#FCF0C0',
-    width:60,
-    height:88,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  icon3:{
-    width:30,
-    height:30,
-    resizeMode: 'contain',
-  }
-  
 })
 export default PageUser;

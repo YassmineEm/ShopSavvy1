@@ -9,9 +9,9 @@ import login from '../app/Screens/login'
 import Signup from '../app/Screens/Signup';
 import PageUser from '../app/Screens/PageUser';
 import Parametre from '../app/Screens/Parametre';
-import Historique from '../app/Screens/Historique';
 import TakeImage from '../app/Screens/TakeImage';
 import Add from '../app/Screens/Add';
+import Historique from '../app/Screens/Historique';
 import Forgetpassword from '../app/Screens/Forgetpassword';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../config/firebase';
@@ -48,9 +48,9 @@ const RootStack = () => {
                 >
                     <Stack.Screen name='PageUser' component={PageUser}/>
                     <Stack.Screen name='Parametre' component={Parametre}/>
-                    <Stack.Screen name='Historique' component={Historique}/>
                     <Stack.Screen name='TakeImage' component={TakeImage}/>
                     <Stack.Screen name='Add' component={Add}/>
+                    <Stack.Screen name='Historique' component={Historique}/>
                 </Stack.Navigator>
             </NavigationContainer>
         );

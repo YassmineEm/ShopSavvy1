@@ -1,44 +1,46 @@
-import React from 'react';
-import {StyleSheet, View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView,ScrollView} from 'react-native';
-import CustomInputField from '../components/CustomInputField';
-function Historique({Navigation}) {
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+
+function Historique({ navigation }) {
+    const [ongletActif, setOngletActif] = useState('Scanner');
+
     return (
-        <ScrollView  contentContainerStyle={styles.container}>
-            <TouchableOpacity style={styles.produit1}> 
-               <Image source={require('../assets/produit.png')} style={styles.icon} />
-               <Text style={styles.text}>Laptot</Text>
-            </TouchableOpacity>
+        <ScrollView style={styles.container}>
+            <View style={styles.barreChoix}>
+                <TouchableOpacity onPress={() => setOngletActif('Scanner')}>
+                    <Text style={[styles.choix, ongletActif === 'Scanner' && styles.choixActif]}>Scanner</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => setOngletActif('Generer')}>
+                    <Text style={[styles.choix, ongletActif === 'Generer' && styles.choixActif]}>Générer</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => setOngletActif('Favoris')}>
+                    <Text style={[styles.choix, ongletActif === 'Favoris' && styles.choixActif]}>Favoris</Text>
+                </TouchableOpacity>
+            </View>
         </ScrollView>
     );
 }
-const styles = StyleSheet.create({ 
-  container:{
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    marginTop:50,
-  },
-  produit1:{
-    width:334,
-    height:160,
-    borderRadius:15,
-    backgroundColor:'#D5D5D4',
-    alignSelf: 'flex-start',
-    marginLeft: 10,
-    marginTop:25,
-  },
-  icon:{
-    width:100,
-    height:100,
-    resizeMode:'contain',
-    marginTop:30,
-  },
-  text:{
-    position:'absolute',
-    top:30,
-    left:85,
-    fontSize:20,
-    fontWeight:'bold',
-  }
 
-})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: 55,
+    },
+    barreChoix: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        backgroundColor: '#FFFFFF',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+    },
+    choix: {
+        fontSize: 18,
+        color: '#050505',
+    },
+    choixActif: {
+        fontWeight: 'bold',
+        color: '#58F809',
+    },
+});
+
 export default Historique;
