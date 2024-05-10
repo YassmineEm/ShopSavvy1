@@ -14,3 +14,6 @@
 
 
           https://www.figma.com/file/PvlRLamSolWNizZN018rDV/Untitled?type=design&node-id=38%3A11&mode=design&t=0MklWeVcyTWKXAHG-1
+  <img src="app/assets/1.png" width="200" height="200">
+  <img src="app/assets/2.png" width="200" height="200">
+  <img src="app/assets/3.png" width="200" height="200">
