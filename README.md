@@ -19,9 +19,4 @@
     <img src="app/assets/2.PNG">
     <img src="app/assets/3.PNG">
 </div>
-.images-container {
-    display: flex;
-}
-.images-container img {
-    margin-right: 10px;
-}
+
