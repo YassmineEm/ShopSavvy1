@@ -16,6 +16,7 @@ import Forgetpassword from '../app/Screens/Forgetpassword';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import { setUser } from '../redux/slices/user';
+import Profile from '../app/Screens/Profile';
 
 
 
@@ -51,6 +52,7 @@ const RootStack = () => {
                     <Stack.Screen name='TakeImage' component={TakeImage}/>
                     <Stack.Screen name='Add' component={Add}/>
                     <Stack.Screen name='Historique' component={Historique}/>
+                    <Stack.Screen name='Profile' component={Profile}/>
                 </Stack.Navigator>
             </NavigationContainer>
         );

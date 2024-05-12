@@ -7,6 +7,8 @@ import { getAnalytics } from "firebase/analytics";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 import { getFirestore, collection } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyDTETlCetLThB_xkGSi-cPzctRqZGG_G2E",
   authDomain: "shopsavvy1-470e8.firebaseapp.com",
@@ -21,6 +23,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
+export const database = getDatabase(app);
+export const storage = getStorage(app);
 export const tripsRef = collection(db, 'trips');
 export const expensesRef = collection(db ,'expenses');
 export default app;

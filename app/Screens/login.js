@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { auth } from '../../config/firebase';
 import Loading from '../components/loading';
 import { setUserLoading } from '../../redux/slices/user';
+import { ref, set } from 'firebase/database';
+import { database } from '../../config/firebase';
 
 function Login({navigation}) {
     const [fullName, setFullName] = useState(''); 
@@ -16,7 +18,6 @@ function Login({navigation}) {
     const {userLoading} = useSelector(state =>state.user);
     const dispatch = useDispatch();
     const handleSignup = async () => {
-        // Implémentez votre logique d'inscription ici
         let isError = false;
         if (!fullName || !email || !password || !confirmPassword) {
             setError("Please fill in all fields.");
@@ -30,11 +31,15 @@ function Login({navigation}) {
             setError("Passwords do not match");
             isError = true;
         }
-        // S'il n'ya aucune erreur
         if (!isError) {
             try{
                 dispatch(setUserLoading(true));
-                await createUserWithEmailAndPassword(auth ,email , password);
+                const userCredential = await createUserWithEmailAndPassword(auth ,email , password);
+                const userId = userCredential.user.uid;
+                await set(ref(database, `users/${userId}`), {
+                    nom: fullName,
+                    email: email,
+                });
                 dispatch(setUserLoading(false));
             }catch(e){
                 dispatch(setUserLoading(false));
@@ -50,21 +55,21 @@ function Login({navigation}) {
             <Text style={styles.logoname}>ShopSavvy</Text>
             <Text style={styles.title}>Create an account</Text>
             <CustomInputField 
-                  iconSource={require('../assets/user.png')} // Mettez ici votre icône de nom d'utilisateur
+                  iconSource={require('../assets/user.png')} 
                   placeholder="FullName"
                   onChangeText={setFullName}
                   value={fullName}
                   error={error}
             />
             <CustomInputField
-                  iconSource={require('../assets/mail.png')} // Mettez ici votre icône de l'email
+                  iconSource={require('../assets/mail.png')} 
                   placeholder="Email"
                   onChangeText={setEmail}
                   value={email}
                   error={error}
             />
             <CustomInputField
-                  iconSource={require('../assets/padlock.png')} // Mettez ici votre icône du mot de passe 
+                  iconSource={require('../assets/padlock.png')} 
                   placeholder="Password"
                   onChangeText={setPassword}
                   secureTextEntry={true}
@@ -72,7 +77,7 @@ function Login({navigation}) {
                   error={error}
             />
             <CustomInputField
-                  iconSource={require('../assets/padlock.png')} // Mettez ici votre icône de mot de passe 
+                  iconSource={require('../assets/padlock.png')} 
                   placeholder="ConfirmPassword"
                   onChangeText={setConfirmPassword}
                   secureTextEntry={true}
@@ -195,15 +200,15 @@ function Login({navigation}) {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#FFFFFF', // Couleur d'arrière-plan de la vue
+        backgroundColor: '#FFFFFF', 
     },
     logo: {
-        marginTop: 20, // Positionne le logo à 20 pixels du haut
+        marginTop: 20, 
         alignSelf: 'flex-start',
         marginLeft: 24,
         width:110,
         height:110,
-        resizeMode: 'contain', // Assurez-vous que le logo s'adapte bien sans être déformé
+        resizeMode: 'contain', 
     },
     title: {
         alignSelf: 'flex-start',
@@ -225,22 +230,22 @@ const styles = StyleSheet.create({
     signupButton: {
         width: '30%',
         padding: 5,
-        backgroundColor: '#00ff00', // Exemple de couleur de fond
+        backgroundColor: '#00ff00', 
         borderRadius: 5,
-        marginTop: 6, // Ajustez selon l'espacement souhaité
+        marginTop: 6, 
         alignItems: 'center',
         alignSelf: 'flex-start',
         marginLeft: 121,
     },
     signupButtonText: {
-        color: '#FFFFFF', // Couleur du texte
+        color: '#FFFFFF', 
         fontWeight: 'bold',
         fontSize:20,
     },
     container1: {
-        flexDirection: 'row', // Aligner les boutons horizontalement
-        justifyContent: 'center', // Centrer les boutons dans le conteneur
-        alignItems: 'center', // Centrer les boutons verticalement
+        flexDirection: 'row', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
         marginTop: 10, 
     },
     errorText:{

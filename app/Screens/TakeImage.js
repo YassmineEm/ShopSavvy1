@@ -15,7 +15,6 @@ function TakeImage({navigation}) {
             setHasPermission(status == 'granted')
         })()
     }
-    // Request Camera Permission
     useEffect(() => {
         askForCameraPermission();
     }, []);

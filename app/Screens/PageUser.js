@@ -39,6 +39,10 @@ function PageUser({navigation}) {
               <Image source={require('../assets/notification.png')} style={styles.icon} />  
               <Text style={styles.UserButtonText}>Historique</Text>
           </TouchableOpacity>
+          <TouchableOpacity style={styles.UserButton} onPress={() => navigation.navigate('Profile')}>
+              <Image source={require('../assets/user.png')} style={styles.icon} />  
+              <Text style={styles.UserButtonText}>Profile</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.UserButton} onPress={handleLogout}>
               <Image source={require('../assets/left-arrow.png')} style={styles.icon} />
               <Text style={styles.UserButtonText}>Logout</Text>
@@ -49,7 +53,7 @@ function PageUser({navigation}) {
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor: '#FFFFFF', // Couleur d'arrière-plan de la vue
+    backgroundColor: '#FFFFFF', 
   },
   UserInterface1:{
     width: '100%',
@@ -67,10 +71,10 @@ const styles = StyleSheet.create({
   },
   UserButton:{
     width: '70%',
-    padding: 15,
+    padding: 10,
     backgroundColor: '#00ff00', // Exemple de couleur de fond
     borderRadius: 25,
-    marginTop: 34, // Ajustez selon l'espacement souhaité
+    marginTop: 30, // Ajustez selon l'espacement souhaité
     flexDirection: 'row', // Organise les éléments enfants horizontalement
     alignItems: 'center',
     alignSelf: 'center', // Centre le bouton lui-même dans son conteneur parent
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
   UserButtonText:{
     color: '#000000', // Couleur du texte
     fontWeight: 'bold',
-    fontSize:20,
+    fontSize:18,
     marginLeft: 10,
   },
   icon:{

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { ScrollView, StyleSheet, View, TouchableOpacity, Text , Image} from 'react-native';
 
 function Historique({ navigation }) {
     const [ongletActif, setOngletActif] = useState('Scanner');
+    const [elementsScannes, setElementsScannes] = useState([]);
+    
 
     return (
         <ScrollView style={styles.container}>
