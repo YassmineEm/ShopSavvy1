@@ -14,6 +14,9 @@
 
 
           https://www.figma.com/file/PvlRLamSolWNizZN018rDV/Untitled?type=design&node-id=38%3A11&mode=design&t=0MklWeVcyTWKXAHG-1
-  <img src="app/assets/1.png">
-  <img src="app/assets/2.png">
-  <img src="app/assets/3.png">
+<div class="images-container">
+    <img src="app/assets/1.PNG">
+    <img src="app/assets/2.PNG">
+    <img src="app/assets/3.PNG">
+</div>
+
