@@ -1,14 +1,15 @@
 import React, {useState , useEffect}from 'react';
-import { ScrollView,View, Text, Image, StyleSheet ,TextInput ,Pressable , Alert} from 'react-native';
-import { ref, onValue } from 'firebase/database';
-import { database } from '../../config/firebase';
+import { ScrollView,View, Text, Image, StyleSheet ,TextInput ,Pressable , Alert ,Button} from 'react-native';
+import { ref, onValue , update , remove} from 'firebase/database';
+import { database, storage} from '../../config/firebase';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import * as ImagePicker from 'expo-image-picker';
-import {getDownloadURL } from 'firebase/storage';
+import {getDownloadURL , uploadBytes ,deleteObject} from 'firebase/storage';
 function Profile({navigation}) {
     const [user, setUser] = useState(null);
     const [image, setImage] = useState(null);
-
+    const [imageSelected, setImageSelected] = useState(false);
+    const [selectedImageUri, setSelectedImageUri] = useState(null);
 
     useEffect(() => {
         const auth = getAuth();
@@ -17,16 +18,46 @@ function Profile({navigation}) {
                 const userId = user.uid;
                 const userRef = ref(database, `users/${userId}`)
                 onValue(userRef, (snapshot) => {
-                const data = snapshot.val();
-                console.log('Data from Firebase:', data);
-                setUser(data);
-              });
+                    const data = snapshot.val();
+                    console.log('Data from Firebase:', data);
+                    setUser(data);
+                });
             }else{
                 setUser(null);
             }
         });
     }, []);
+    const uploadImageToFirebaseStorage = async (uri) => {
+        try {
+            const response = await fetch(uri);
+            const blob = await response.blob();
+            const metadata = { contentType: 'image/jpeg' };
+            const storageRef = ref(storage, `images/${user.uid}/${Date.now()}.jpg`);
+            await uploadBytes(storageRef, blob, metadata);
+            const downloadURL = await getDownloadURL(storageRef);
 
+            const auth = getAuth();
+            const currentUser = auth.currentUser;
+            if (currentUser) {
+                await update(ref(database, `users/${currentUser.uid}`), {
+                    image: downloadURL,
+                });
+            }
+
+            Alert.alert('Succès', 'L\'image a été envoyée avec succès vers Firebase Storage.');
+
+        } catch (error) {
+            console.error('Erreur lors de l\'envoi de l\'image vers Firebase Storage : ', error);
+            Alert.alert('Erreur', 'Une erreur est survenue lors de l\'envoi de l\'image.');
+        }
+    };
+    const handleUploadImage = () => {
+        if (imageSelected) {
+            uploadImageToFirebaseStorage(selectedImageUri);
+        } else {
+            Alert.alert('Sélectionnez d\'abord une image');
+        }
+    };
     const selectImage = async () => {
         const options = {
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -37,34 +68,53 @@ function Profile({navigation}) {
         try {
             const pickerResult = await ImagePicker.launchImageLibraryAsync(options);
     
-            if (pickerResult.cancelled) {
-                console.log('L\'utilisateur a annulé la sélection d\'image');
-            } else if (pickerResult.error) {
-                console.error('Erreur de sélection d\'image: ', pickerResult.error);
-            } else {
-                console.log('Image sélectionnée:', pickerResult.uri);
-                const storageRef = ref(storage, `images/${user.uid}`);
-                const metadata = { contentType: 'image/jpeg' };
+            if (!pickerResult.cancelled) {
+                setSelectedImageUri(pickerResult.uri);
+                setImageSelected(true);
+                await uploadImageToFirebaseStorage(pickerResult.uri);
             }
         } catch (error) {
-            console.error('Erreur lors du lancement de la bibliothèque d\'images: ', error);
+            console.error('Erreur lors de la sélection d\'image: ', error);
         }
     };
-    const updateImage = (uri) => {
-        const storageRef = ref(storage, `images/${user.uid}`);
-        const metadata = { contentType: 'image/jpeg' };
-        uploadBytes(storageRef, uri, metadata)
-            .then((snapshot) => {
-                getDownloadURL(snapshot.ref)
-                    .then((downloadURL) => {
-                        const userDataRef = ref(database, `users/${user.uid}`);
-                        update(userDataRef, { ...user, image: downloadURL })
-                            .then(() => console.log('Image de l\'utilisateur mise à jour dans Firebase Realtime Database'))
-                            .catch((error) => console.error('Erreur lors de la mise à jour de l\'image de l\'utilisateur: ', error));
-                    })
-                    .catch((error) => console.error('Erreur lors de la récupération de l\'URL de téléchargement: ', error));
-            })
-            .catch((error) => console.error('Erreur lors de l\'enregistrement de l\'image: ', error));
+    
+    const TakeImage = async () => {
+        try {
+            const { status } = await ImagePicker.requestCameraPermissionsAsync();
+            if (status !== 'granted') {
+                Alert.alert('Permission refusée', 'Désolé, nous avons besoin de la permission d\'accéder à votre appareil photo pour que cela fonctionne.');
+                return;
+            }
+            const result = await ImagePicker.launchCameraAsync({
+               allowsEditing: false,
+               aspect: [4, 3],
+               quality: 1,
+            });
+            if (!result.cancelled) {
+                console.log('Image capturée:', result.uri);
+                await uploadImageToFirebaseStorage(result.uri); 
+                setImageSelected(true);
+            }
+        } catch (error) {
+            console.error('Erreur lors de la prise de la photo : ', error);
+            Alert.alert('Erreur', 'Une erreur est survenue lors de la prise de la photo.');
+        }
+    };
+    const RemoveImage = async () =>{
+        try {
+            const auth = getAuth();
+            const user = auth.currentUser;
+            if (user) {
+                const storageRef = ref(storage, `images/${user.uid}`);
+                await deleteObject(storageRef);
+                setImage(null); 
+                await update(ref(database, `users/${user.uid}/image`), '');
+                Alert.alert('Image supprimée avec succès.');
+            }
+        } catch (error) {
+            console.error('Erreur lors de la suppression de l\'image : ', error);
+            Alert.alert('Erreur', 'Une erreur est survenue lors de la suppression de l\'image.');
+        }
     };
     const showOptions = () => {
         Alert.alert(
@@ -72,8 +122,8 @@ function Profile({navigation}) {
             'Que voulez-vous faire avec l\'image ?',
             [
                 { text: 'Importer une image', onPress: selectImage },
-                { text: 'Prendre une photo', onPress: takePhoto },
-                { text: 'Supprimer l\'image', onPress: () => console.log('Supprimer l\'image'), style: 'destructive' },
+                { text: 'Prendre une photo', onPress:  TakeImage},
+                { text: 'Supprimer l\'image', onPress: RemoveImage, style: 'destructive' },
                 { text: 'Annuler', style: 'cancel' }
             ]
         );
@@ -84,7 +134,7 @@ function Profile({navigation}) {
                 <>
                     <Text style={styles.text}>Your Profile</Text>
                     <Pressable onPress={showOptions}>
-                        <Image source={user.image ? { uri: user.image } : require('../assets/user.png')} style={styles.image} />
+                        <Image source={user.image ? { uri: user.image } : require('../assets/profile.png')} style={styles.image} />
                     </Pressable>
                     <TextInput
                         style={[styles.input1, styles.label1]}
@@ -107,40 +157,46 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     image: {
-        marginTop:60,
-        marginLeft:100,
-        width: 130,
-        height: 130,
-        borderRadius: 50,
+        marginTop:58,
+        marginLeft:97,
+        width: 170,
+        height: 170,
         marginBottom: 20,
     },
     text :{
-      fontSize:20,
+      fontSize:28,
       fontWeight: 'bold' ,
-      marginTop: 60,
-      marginLeft:110,
+      marginTop: 129,
+      marginLeft:115,
+      color:  '#42B315',
     },
     input1: {
         width: 250,
         height:40,
         fontSize: 18,
         marginBottom: 10,
-        marginLeft: 46,
+        marginLeft: 68,
         padding: 10,
         borderWidth: 1,
         borderRadius: 15,
-        backgroundColor: '#27B76F',
+        borderColor: '#42B315',
+        marginTop: 20,
+        textAlign: 'center',
+        color: 'black',
     },
     input2: {
         width: 250,
         height:40,
         fontSize: 18,
         marginBottom: 10,
-        marginLeft: 46,
+        marginLeft: 68,
         padding: 10,
         borderWidth: 1,
+        marginTop:10,
         borderRadius: 15,
-        backgroundColor: '#26B669',
+        borderColor: '#42B315',
+        textAlign: 'center',
+        color: 'black',
     },
 });
 export default Profile;

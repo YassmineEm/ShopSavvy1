@@ -23,6 +23,10 @@ function PageUser({navigation}) {
               <Text style={styles.textT}>Discover shopping!</Text>
           </TouchableOpacity>
           <Text style={styles.title}>Options de Reconnaissance</Text>
+          <TouchableOpacity style={styles.UserButton} onPress={() => navigation.navigate('Profile')}>
+              <Image source={require('../assets/user.png')} style={styles.icon} />  
+              <Text style={styles.UserButtonText}>Profile</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.UserButton} onPress={() => navigation.navigate('TakeImage')}>
               <Image source={require('../assets/barcode.png')} style={styles.icon} /> 
               <Text style={styles.UserButtonText}>Scan Barcode</Text>
@@ -38,10 +42,6 @@ function PageUser({navigation}) {
           <TouchableOpacity style={styles.UserButton} onPress={() => navigation.navigate('Historique')}>
               <Image source={require('../assets/notification.png')} style={styles.icon} />  
               <Text style={styles.UserButtonText}>Historique</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.UserButton} onPress={() => navigation.navigate('Profile')}>
-              <Image source={require('../assets/user.png')} style={styles.icon} />  
-              <Text style={styles.UserButtonText}>Profile</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.UserButton} onPress={handleLogout}>
               <Image source={require('../assets/left-arrow.png')} style={styles.icon} />
@@ -72,15 +72,15 @@ const styles = StyleSheet.create({
   UserButton:{
     width: '70%',
     padding: 10,
-    backgroundColor: '#00ff00', // Exemple de couleur de fond
+    backgroundColor: '#2ced2f', 
     borderRadius: 25,
-    marginTop: 30, // Ajustez selon l'espacement souhaité
-    flexDirection: 'row', // Organise les éléments enfants horizontalement
+    marginTop: 30, 
+    flexDirection: 'row', 
     alignItems: 'center',
-    alignSelf: 'center', // Centre le bouton lui-même dans son conteneur parent
+    alignSelf: 'center', 
   },
   UserButtonText:{
-    color: '#000000', // Couleur du texte
+    color: '#000000', 
     fontWeight: 'bold',
     fontSize:18,
     marginLeft: 10,
@@ -97,17 +97,17 @@ const styles = StyleSheet.create({
   text:{
     fontSize:23,
     fontWeight:'bold',
-    color:'#020202',
+    color:'#FFFFFF',
   },
   textT:{
     fontSize:23,
-    color:'#020202', 
+    color:'#FFFFFF', 
     fontStyle:'italic'
   },
   UserInterface2:{
     width: '80%',
     padding: 22,
-    backgroundColor: '#DBD3DC',
+    backgroundColor: '#f09147',
     borderTopRightRadius:30,
     borderBottomRightRadius: 30,
     borderBottomLeftRadius: 30,
