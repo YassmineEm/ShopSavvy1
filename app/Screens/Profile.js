@@ -140,44 +140,43 @@ function Profile({ navigation }) {
         <ScrollView style={styles.container}>
             {user && (
                 <>
-                    <Text style={styles.text}>Profile</Text>
-                    <Pressable onPress={showOptions}>
-                        <Image source={image ? { uri: image } : defaultImage} style={styles.image} />
-                    </Pressable>
-                    <View style={styles.shadowContainer}>
-                      <TextInput
-                        style={[styles.input1, styles.label1]}
-                        value={user.nom}
-                        editable={false}
-                       />
-                    </View>
-                    <View style={styles.shadowContainer}>
-                      <TextInput
-                        style={[styles.input2, styles.label2]}
-                        value={user.email}
-                        editable={false}
-                      />
+                  <Text style={styles.text}>Profile</Text>
+                    <View style={styles.profileContainer}>
+                        <Pressable onPress={showOptions}>
+                            <Image source={image ? { uri: image } : defaultImage} style={styles.image} />
+                        </Pressable>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.label1}>{user.nom}</Text>
+                            <Text style={styles.label2}>{user.email}</Text>
+                        </View>
                     </View>
                 </>
             )}
-            <View style={styles.shadowContainer}>
                 <TouchableOpacity style={styles.user1}> 
                   <Image source={require('../assets/notifications.png')} style={styles.icon}/>
                   <Text style={styles.user1Text}>Notifications</Text>
+                  <Image source={require('../assets/left.png')} style={styles.icon1}/>
                 </TouchableOpacity>
-            </View>
-            <View style={styles.shadowContainer}>
                 <TouchableOpacity style={styles.user1} onPress={() => navigation.navigate('ChangePassword')}> 
                   <Image source={require('../assets/rotation.png')} style={styles.icon}/>
                   <Text style={styles.user1Text}>Change Password</Text>
+                  <Image source={require('../assets/left.png')} style={styles.icon2}/>
                 </TouchableOpacity>
-            </View>
-            <View style={styles.shadowContainer}>
                 <TouchableOpacity style={styles.user1}> 
                   <Image source={require('../assets/moon.png')} style={styles.icon}/>
                   <Text style={styles.user1Text}>Light /Dark mode</Text>
+                  <Image source={require('../assets/left.png')} style={styles.icon3}/>
                 </TouchableOpacity>
-            </View>
+                <TouchableOpacity style={styles.user1}> 
+                  <Image source={require('../assets/languages.png')} style={styles.icon}/>
+                  <Text style={styles.user1Text}>Language</Text>
+                  <Image source={require('../assets/left.png')} style={styles.icon4}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.user1}> 
+                  <Image source={require('../assets/customer.png')} style={styles.icon}/>
+                  <Text style={styles.user1Text}>Help & Support</Text>
+                  <Image source={require('../assets/left.png')} style={styles.icon5}/>
+                </TouchableOpacity>
         </ScrollView>
     );
 }
@@ -188,79 +187,82 @@ const styles = StyleSheet.create({
     },
     image: {
         marginTop: 20,
-        marginLeft: 114,
-        width: 176,
-        height: 176,
+        marginLeft: 10,
+        width: 142,
+        height: 142,
         marginBottom: 20,
         borderRadius: 25,
+    },
+    profileContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        marginTop:15,
+    },
+    textContainer: {
+        marginLeft: 26,
+        marginTop:3,
+    },
+    label1:{
+        fontSize:26,
+        fontWeight:'bold',
+        marginLeft:23,
+        marginTop:20,
+    },
+    label2:{
+       fontSize:15,
     },
     text: {
         fontSize: 25,
         fontWeight: 'bold',
         marginTop: 37,
-        marginLeft: 162,
-        color: '#000000',
-    },
-    input1: {
-        width: 250,
-        height: 40,
-        fontSize: 25,
-        fontWeight:'bold',
-        marginBottom: 10,
-        marginLeft: 73,
-        padding: 7,
-        borderWidth: 1,
-        borderRadius: 10,
-        borderColor: '#10EC56',
-        marginTop: 20,
-        textAlign: 'center',
-        color: 'black',
-    },
-    input2: {
-        width: 250,
-        height: 40,
-        fontSize: 18,
-        marginBottom: 10,
-        marginLeft: 73,
-        padding: 7,
-        borderWidth: 1,
-        marginTop: 10,
-        borderRadius: 10,
-        borderColor: '#10EC56',
-        textAlign: 'center',
-        color: 'black',
+        marginLeft: 156,
+        color: '#19b604',
     },
     user1:{
         width: '83%',
-        padding: 15,
+        padding: 19,
         backgroundColor: '#2ced2f', 
         borderRadius: 10,
-        marginTop: 25, 
-        marginLeft:83,
+        marginTop: 27, 
+        marginLeft:12,
         flexDirection: 'row', 
         alignItems: 'center',
         alignSelf: 'center', 
     },
     icon:{
-        width: 20,
-        height:20,
+        width: 25,
+        height:25,
     },
     user1Text:{
           marginLeft:8,
-          fontSize:17,
+          fontSize:21,
     },
-    shadowContainer: {
-        shadowColor: '#888', 
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.8,
-        shadowRadius: 10,
-        elevation: 80,
-        width: 300,
-        height: 87,
-        borderRadius: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
+    icon5:{
+        width: 20,
+        height:20,
+        marginLeft:85,
+    },
+    icon1:{
+        width: 20,
+        height:20,
+        marginLeft:110,
+    },
+    icon2:{
+        width: 20,
+        height:20,
+        marginLeft:60,
+    },
+    icon3:{
+        width: 20,
+        height:20,
+        marginLeft:65,
+    },
+    icon4:{
+        width: 20,
+        height:20,
+        marginLeft:133,
+    },
 });
 
 export default Profile;

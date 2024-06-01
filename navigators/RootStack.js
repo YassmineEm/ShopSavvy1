@@ -18,7 +18,9 @@ import { auth } from '../config/firebase';
 import { setUser } from '../redux/slices/user';
 import Profile from '../app/Screens/Profile';
 import ChangePassword from '../app/Screens/ChangePassword';
-
+import ProductsPage from '../app/Screens/ProductsPage';
+import Cart from '../app/Screens/Cart';
+import Favorite from '../app/Screens/Favorite';
 
 
 const Stack = createNativeStackNavigator();
@@ -55,6 +57,9 @@ const RootStack = () => {
                     <Stack.Screen name='Historique' component={Historique}/>
                     <Stack.Screen name='Profile' component={Profile}/>
                     <Stack.Screen name='ChangePassword' component={ChangePassword}/>
+                    <Stack.Screen name='ProductsPage' component={ProductsPage}/>
+                    <Stack.Screen name='Cart' component={Cart}/>
+                    <Stack.Screen name='Favorite' component={Favorite}/>
                 </Stack.Navigator>
             </NavigationContainer>
         );
