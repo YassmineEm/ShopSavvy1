@@ -10,7 +10,7 @@ function Profile({navigation}) {
     const [image, setImage] = useState(null);
     const [imageSelected, setImageSelected] = useState(false);
     const [selectedImageUri, setSelectedImageUri] = useState(null);
-
+     //branch1
     useEffect(() => {
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
