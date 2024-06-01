@@ -1,6 +1,6 @@
 import React ,{useState ,useEffect} from 'react';
 import {StyleSheet, Image,TouchableOpacity,ScrollView,TextInput,Text ,View} from 'react-native';
-import { doc, addDoc ,collection} from "firebase/firestore"; 
+import { doc, setDoc ,collection} from "firebase/firestore"; 
 import { db } from '../../config/firebase';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 function Add({navigation}) {
@@ -40,7 +40,7 @@ function Add({navigation}) {
         }else{
             try {
 
-                await addDoc(collection(db, "Products"), {
+                await setDoc(doc(db, "Products", scannedData), {
                     ID: scannedData,
                     Nom: productName,
                     Pays: country,
@@ -128,14 +128,14 @@ const styles = StyleSheet.create({
     add:{
         alignSelf: 'flex-start',
         margintop:50,
-        marginLeft:96,
+        marginLeft:104,
         width:170,
         height:170,
         resizeMode: 'contain',
     },
     input: {
         alignSelf: 'flex-start',
-        marginLeft:40,
+        marginLeft:48,
         width: 295, 
         padding: 10,
         marginTop: 25,
@@ -147,19 +147,20 @@ const styles = StyleSheet.create({
     titre:{
        fontSize:24,
        fontWeight:'bold',
-       marginTop:30,
-       marginLeft:112,
+       marginTop:42,
+       marginLeft:119,
        marginBottom: 20,
     },
     Button:{
-       marginLeft:96,
+       marginLeft:106,
        width:180,
        height:40,
+       marginTop:30,
        backgroundColor:'#00ff00',
-       borderRadius:30,
+       borderRadius:13,
     },
     ButtonText:{
-        color: '#FFFFFF', // Couleur du texte
+        color: '#FFFFFF', 
         fontWeight: 'bold',
         fontSize:20,
         marginLeft:34,

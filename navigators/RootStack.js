@@ -17,6 +17,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import { setUser } from '../redux/slices/user';
 import Profile from '../app/Screens/Profile';
+import ChangePassword from '../app/Screens/ChangePassword';
 
 
 
@@ -53,6 +54,7 @@ const RootStack = () => {
                     <Stack.Screen name='Add' component={Add}/>
                     <Stack.Screen name='Historique' component={Historique}/>
                     <Stack.Screen name='Profile' component={Profile}/>
+                    <Stack.Screen name='ChangePassword' component={ChangePassword}/>
                 </Stack.Navigator>
             </NavigationContainer>
         );
@@ -79,28 +81,5 @@ const RootStack = () => {
             </NavigationContainer>
         );
     }
-    /*return(
-        <NavigationContainer>
-            <Stack.Navigator screenOptions={{
-                headerStyle:{
-                    backgroundColor:'transparent'
-                },
-                headerTransparent:true,
-                headerTitle:'',
-                headerLeftContainerStyle:{
-                    paddingLeft:20,
-                }     
-            }}
-            initialRouteName="Welcome"
-            >
-                <Stack.Screen name='Welcome'component={Welcome}/>
-                <Stack.Screen name='Signup'component={Signup}/>
-                <Stack.Screen name='Login'component={Login}/>
-                <Stack.Screen name='PageUser' component={PageUser}/>
-                <Stack.Screen name='Parametre' component={Parametre}/>
-                <Stack.Screen name='Historique' component={Historique}/>
-            </Stack.Navigator>
-        </NavigationContainer>
-    )*/
 }
 export default RootStack;

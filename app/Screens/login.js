@@ -9,6 +9,7 @@ import { setUserLoading } from '../../redux/slices/user';
 import { ref, set } from 'firebase/database';
 import { database } from '../../config/firebase';
 
+
 function Login({navigation}) {
     const [fullName, setFullName] = useState(''); 
     const [email, setEmail] = useState('');
@@ -153,7 +154,7 @@ function Login({navigation}) {
                     flexDirection: 'row',
                     justifyContent: 'center',
                  }}>
-                   <TouchableOpacity onPress={() => console.log("Pressed") }
+                   <TouchableOpacity onPress={() => signIn()}
                    style={{
                     //flex: 1,
                     width:170,
@@ -203,7 +204,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF', 
     },
     logo: {
-        marginTop: 20, 
+        marginTop: 130, 
         alignSelf: 'flex-start',
         marginLeft: 24,
         width:110,
@@ -235,7 +236,7 @@ const styles = StyleSheet.create({
         marginTop: 6, 
         alignItems: 'center',
         alignSelf: 'flex-start',
-        marginLeft: 121,
+        marginLeft: 135,
     },
     signupButtonText: {
         color: '#FFFFFF', 

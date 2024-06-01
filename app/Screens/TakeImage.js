@@ -130,12 +130,12 @@ const styles = StyleSheet.create({
         left: 122,
         bottom:160,
         padding: 10,
-        backgroundColor: '#E91C49',
+        backgroundColor: '#4CB9E4',
         borderRadius: 10,
     },
     buttonText: {
         color: '#FFFFFF',
-        fontSize: 24,
+        fontSize: 21,
         fontWeight: 'bold',
     },
     productModal: {

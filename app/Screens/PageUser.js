@@ -65,13 +65,12 @@ const styles = StyleSheet.create({
   Shop:{
     fontSize:26,
     fontWeight:'bold',
-    Color:'#FBF9FB',
     alignSelf: 'flex-start',
     marginLeft:-30,
   },
   UserButton:{
     width: '70%',
-    padding: 10,
+    padding: 15,
     backgroundColor: '#2ced2f', 
     borderRadius: 25,
     marginTop: 30, 
@@ -82,15 +81,16 @@ const styles = StyleSheet.create({
   UserButtonText:{
     color: '#000000', 
     fontWeight: 'bold',
-    fontSize:18,
-    marginLeft: 10,
+    fontSize:23,
+    marginLeft: 25,
   },
   icon:{
     width:30,
     height:30,
+    marginLeft:20,
   },
   title:{
-    fontSize:16,
+    fontSize:17,
     marginTop:73,
     alignSelf: 'center',
   },
@@ -102,12 +102,12 @@ const styles = StyleSheet.create({
   textT:{
     fontSize:23,
     color:'#FFFFFF', 
-    fontStyle:'italic'
+    fontStyle:'italic',
   },
   UserInterface2:{
     width: '80%',
     padding: 22,
-    backgroundColor: '#f09147',
+    backgroundColor: '#72179D',
     borderTopRightRadius:30,
     borderBottomRightRadius: 30,
     borderBottomLeftRadius: 30,

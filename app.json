@@ -11,6 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      "@react-native-google-signin/google-signin"
+    ],
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -21,7 +24,6 @@
       ]
     },
     "android": {
-      "package": "com.example.myapplication",
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff",
@@ -30,10 +32,16 @@
           "READ_EXTERNAL_STORAGE",
           "WRITE_EXTERNAL_STORAGE"
         ]
-      }
+      },
+      "package": "com.example.shopsavvy1"
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d99bc7bf-6ce1-4ab7-8fc4-de9bd3401bd1"
+      }
     }
   }
 }

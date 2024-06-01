@@ -80,7 +80,7 @@ function Signup({navigation}) {
 const styles = StyleSheet.create({
     
     logo: {
-        marginTop:  30, 
+        marginTop:  140, 
         alignSelf: 'flex-start',
         marginLeft: 24,
         width:110,
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     title: {
         alignSelf: 'flex-start',
-        marginLeft: 55,
+        marginLeft: 76,
         fontSize:55,
         fontStyle:'italic',
         fontWeight:'bold',
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     logoname:{
         alignSelf: 'flex-start',
         marginLeft:140,
-        fontSize:30,
+        fontSize:35,
         fontWeight:'bold',
         color:'#228B22',
         marginTop:-40,
@@ -117,30 +117,30 @@ const styles = StyleSheet.create({
     },
     loginButton: {
         width: '30%',
-        padding: 5,
-        backgroundColor: '#00ff00', // Exemple de couleur de fond
+        padding: 7,
+        backgroundColor: '#00ff00', 
         borderRadius: 5,
-        marginTop: 20, // Ajustez selon l'espacement souhaité
+        marginTop: 20, 
         alignItems: 'center',
         alignSelf: 'flex-start',
-        marginLeft: 115,
+        marginLeft: 137,
     },
     loginButtonText: {
-        color: '#FFFFFF', // Couleur du texte
+        color: '#FFFFFF', 
         fontWeight: 'bold',
-        fontSize:20,
+        fontSize:22,
     },
     titre:{
         fontSize: 17,
         alignSelf: 'flex-start',
-        marginLeft: 113,
-        marginTop:6,
+        marginLeft: 131,
+        marginTop:15,
     },
     titre1:{
         fontSize: 17,
         alignSelf: 'flex-start',
-        marginLeft: 92,
-        marginTop:6,
+        marginLeft: 110,
+        marginTop:8,
     },
     errorText:{
         fontSize:17,

@@ -3,7 +3,6 @@ import { View, Text, Image, StyleSheet, Dimensions ,TouchableOpacity} from 'reac
 
 function Welcome({navigation}) {
     const handleWelcome = () => {
-        // Ici, vous pouvez implémenter votre logique 
         console.log(Welcome); 
         navigation.navigate('Signup')
     };
@@ -26,22 +25,22 @@ const styles = StyleSheet.create({
         backgroundColor:'#00ff00',
     },
     Welcome:{
-       width:360,
-       height:350,
+       width:400,
+       height:440,
        borderBottomRightRadius:200,   
        backgroundColor: '#FFFFFF', 
     },
     logo: {
-        marginTop: 40, // Positionne le logo à 20 pixels du haut
-        alignSelf: 'center', // Centre le logo dans le conteneur
-        width:180,
-        height:180,
-        resizeMode: 'contain', // Assurez-vous que le logo s'adapte bien sans être déformé
+        marginTop: 100, 
+        alignSelf: 'center', 
+        width:220,
+        height:220,
+        resizeMode: 'contain', 
     },
     logoname: {
-        fontSize:34,
+        fontSize:45,
         fontWeight:'bold',
-        marginTop: 20,
+        marginTop: 38,
         color:'#228B22',
         fontStyle: 'italic',
         alignSelf: 'flex-start',
@@ -52,23 +51,23 @@ const styles = StyleSheet.create({
         fontSize:22,
         alignSelf: 'flex-start',
         marginLeft: 20,
-        marginTop: 50,
+        marginTop: 64,
         fontWeight:'bold',
     },
     WelcomeButton: {
         width: '35%',
         padding: 10,
-        backgroundColor: '#FFFFFF', // Exemple de couleur de fond
+        backgroundColor: '#FFFFFF', 
         borderRadius: 5,
-        marginTop: 20, // Ajustez selon l'espacement souhaité
+        marginTop: 38, 
         alignItems: 'center',
         alignSelf: 'flex-start',
-        marginLeft: 115,
+        marginLeft: 125,
     },
     WelcomeButtonText: {
-        color: '#00ff00', // Couleur du texte
+        color: '#00ff00', 
         fontWeight: 'bold',
-        fontSize:20,
+        fontSize:24,
     },
 })
 export default Welcome;
