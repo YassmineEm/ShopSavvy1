@@ -6,6 +6,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import * as ImagePicker from 'expo-image-picker';
 import {getDownloadURL , uploadBytes ,deleteObject} from 'firebase/storage';
 function Profile({navigation}) {
+    /*
     const [user, setUser] = useState(null);
     const [image, setImage] = useState(null);
     const [imageSelected, setImageSelected] = useState(false);
@@ -149,8 +150,10 @@ function Profile({navigation}) {
                 </>
             )}
         </ScrollView>
-    );
+
+    );*/
 }
+
 const styles = StyleSheet.create({
     container :{
         flex:1,

@@ -17,6 +17,9 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import { setUser } from '../redux/slices/user';
 import Profile from '../app/Screens/Profile';
+import ProductsPage from '../app/Screens/ProductsPage';
+import Cart from '../app/Screens/Cart';
+import Favorite from '../app/Screens/Favorite';
 
 
 
@@ -51,6 +54,9 @@ const RootStack = () => {
                     <Stack.Screen name='Parametre' component={Parametre}/>
                     <Stack.Screen name='TakeImage' component={TakeImage}/>
                     <Stack.Screen name='Add' component={Add}/>
+                    <Stack.Screen name='Favorite' component={Favorite} />
+                    <Stack.Screen name='ProductsPage' component={ProductsPage} />
+                    <Stack.Screen name='Cart' component={Cart} />
                     <Stack.Screen name='Historique' component={Historique}/>
                     <Stack.Screen name='Profile' component={Profile}/>
                 </Stack.Navigator>

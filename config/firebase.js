@@ -27,4 +27,8 @@ export const database = getDatabase(app);
 export const storage = getStorage(app);
 export const tripsRef = collection(db, 'trips');
 export const expensesRef = collection(db ,'expenses');
+export const getCurrentUser = () => {
+  const user = auth.currentUser;
+  return user;
+};
 export default app;
