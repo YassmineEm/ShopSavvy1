@@ -37,6 +37,7 @@
     "react": "18.2.0",
     "react-native": "0.74.1",
     "react-native-appearance": "^0.3.4",
+    "react-native-collapsible": "^1.6.1",
     "react-native-google-signin": "^2.1.1",
     "react-native-image-crop-picker": "^0.41.1",
     "react-native-image-picker": "^7.1.2",

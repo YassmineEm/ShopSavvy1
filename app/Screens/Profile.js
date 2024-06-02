@@ -172,7 +172,7 @@ function Profile({ navigation }) {
                   <Text style={styles.user1Text}>Language</Text>
                   <Image source={require('../assets/left.png')} style={styles.icon4}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.user1}> 
+                <TouchableOpacity style={styles.user1} onPress={() => navigation.navigate('Help')}> 
                   <Image source={require('../assets/customer.png')} style={styles.icon}/>
                   <Text style={styles.user1Text}>Help & Support</Text>
                   <Image source={require('../assets/left.png')} style={styles.icon5}/>
