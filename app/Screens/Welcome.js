@@ -23,7 +23,7 @@ function Welcome({navigation}) {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor:'#00ff00',
+        backgroundColor:'#9e749a',
     },
     Welcome:{
        width:360,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         fontSize:34,
         fontWeight:'bold',
         marginTop: 20,
-        color:'#228B22',
+        color:'#9e749a',
         fontStyle: 'italic',
         alignSelf: 'flex-start',
         marginLeft: 24,
@@ -59,14 +59,14 @@ const styles = StyleSheet.create({
         width: '35%',
         padding: 10,
         backgroundColor: '#FFFFFF', // Exemple de couleur de fond
-        borderRadius: 5,
+        borderRadius: 10,
         marginTop: 20, // Ajustez selon l'espacement souhaité
         alignItems: 'center',
         alignSelf: 'flex-start',
         marginLeft: 115,
     },
     WelcomeButtonText: {
-        color: '#00ff00', // Couleur du texte
+        color: '#9e749a', // Couleur du texte
         fontWeight: 'bold',
         fontSize:20,
     },

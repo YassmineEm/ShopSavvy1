@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         marginTop:130,
         alignSelf: 'flex-start',
         marginLeft:24,
-        backgroundColor:'#55E139',
+        backgroundColor:'#a279a2',
     },
     input: {
         alignSelf: 'flex-start',
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         padding: 10,
         marginTop: 120,
         borderWidth: 1,
-        borderColor: '#55E139', 
+        borderColor: '#a279a2', 
         borderRadius: 10,
     },
     Button:{
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         marginTop:30,
         width:240,
         height:40,
-        backgroundColor:'#00ff00',
+        backgroundColor:'#a279a2',
         borderRadius:30,
     },
     ButtonText:{

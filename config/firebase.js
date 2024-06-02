@@ -9,6 +9,7 @@ import { getFirestore, collection } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 import { getStorage } from "firebase/storage";
+import { getMessaging, getToken } from 'firebase/messaging';
 const firebaseConfig = {
   apiKey: "AIzaSyDTETlCetLThB_xkGSi-cPzctRqZGG_G2E",
   authDomain: "shopsavvy1-470e8.firebaseapp.com",
@@ -27,6 +28,7 @@ export const database = getDatabase(app);
 export const storage = getStorage(app);
 export const tripsRef = collection(db, 'trips');
 export const expensesRef = collection(db ,'expenses');
+export const messaging = getMessaging(app);
 export const getCurrentUser = () => {
   const user = auth.currentUser;
   return user;

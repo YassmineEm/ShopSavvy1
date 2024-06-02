@@ -94,17 +94,17 @@ const ProductsPage = ({ navigation }) => {
   }, [db]); // Tableau de dépendances vide pour garantir que useEffect ne s'exécute qu'une fois
 
   const addToCart = async (item) => {
-    const user = getCurrentUser(); // Function getCurrentUser to be implemented
+    const user = getCurrentUser();
     if (user && db) {
       try {
         const userId = user.uid;
         const userCartRef = doc(db, 'Cart', userId);
         const cartSnapshot = await getDoc(userCartRef);
+
         let updatedCartItems = [];
         if (cartSnapshot.exists()) {
           const existingCartItems = cartSnapshot.data().items || [];
-          console.log('Existing cart items:', existingCartItems);
-          const existingItemIndex = existingCartItems.findIndex((cartItem) => cartItem.id === item.id);
+          const existingItemIndex = existingCartItems.findIndex(cartItem => cartItem.id === item.id);
           if (existingItemIndex !== -1) {
             updatedCartItems = existingCartItems.map((cartItem, index) => {
               if (index === existingItemIndex) {
@@ -118,10 +118,10 @@ const ProductsPage = ({ navigation }) => {
         } else {
           updatedCartItems = [{ ...item, quantity: 1 }];
         }
-        console.log('Updated cart items before saving:', updatedCartItems);
+
         await setDoc(userCartRef, { items: updatedCartItems });
-        console.log('Cart saved to Firestore successfully.');
         setCartItems(updatedCartItems);
+        setCartItemCount(updatedCartItems.length);
       } catch (error) {
         console.error('Error adding item to cart:', error);
       }
@@ -136,18 +136,20 @@ const ProductsPage = ({ navigation }) => {
         const userId = user.uid;
         const userFavoriteRef = doc(db, 'Favorites', userId);
         const favoriteSnapshot = await getDoc(userFavoriteRef);
+
         let updatedFavoriteItems = [];
         if (favoriteSnapshot.exists()) {
           const existingFavoriteItems = favoriteSnapshot.data().items || [];
-          const existingItemIndex = existingFavoriteItems.findIndex((favoriteItem) => favoriteItem.id === item.id);
+          const existingItemIndex = existingFavoriteItems.findIndex(favoriteItem => favoriteItem.id === item.id);
           if (existingItemIndex !== -1) {
-            updatedFavoriteItems = existingFavoriteItems.filter((favoriteItem) => favoriteItem.id !== item.id);
+            updatedFavoriteItems = existingFavoriteItems.filter(favoriteItem => favoriteItem.id !== item.id);
           } else {
             updatedFavoriteItems = [...existingFavoriteItems, item];
           }
         } else {
           updatedFavoriteItems = [item];
         }
+
         await setDoc(userFavoriteRef, { items: updatedFavoriteItems });
         setFavoriteItems(updatedFavoriteItems);
       } catch (error) {

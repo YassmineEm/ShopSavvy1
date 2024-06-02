@@ -186,7 +186,7 @@ function Login({navigation}) {
                 <Pressable onPress={() => navigation.navigate("Signup")}>
                     <Text style={{
                         fontSize: 16,
-                        color:'#00ff00',
+                        color:'#a279a2',
                         fontWeight:'bold',
                         fontStyle:'italic',
                         marginLeft:6,
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
         fontSize:27,
         fontStyle:'italic',
         fontWeight:'bold',
-        color:'#00ff00',
+        color:'#a279a2',
     },
     logoname:{
         alignSelf: 'flex-start',
@@ -225,12 +225,12 @@ const styles = StyleSheet.create({
         marginLeft:140,
         fontSize:30,
         fontWeight:'bold',
-        color:'#228B22',
+        color:'#565074',
     },
     signupButton: {
         width: '30%',
         padding: 5,
-        backgroundColor: '#00ff00', 
+        backgroundColor: '#a279a2', 
         borderRadius: 5,
         marginTop: 6, 
         alignItems: 'center',

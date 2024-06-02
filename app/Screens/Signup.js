@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         fontSize:55,
         fontStyle:'italic',
         fontWeight:'bold',
-        color:'#00ff00',
+        color:'#a279a2',
         marginTop:20,
     },
     logoname:{
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         marginLeft:140,
         fontSize:30,
         fontWeight:'bold',
-        color:'#228B22',
+        color:'#565074',
         marginTop:-40,
     },
     input: {
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     loginButton: {
         width: '30%',
         padding: 5,
-        backgroundColor: '#00ff00', // Exemple de couleur de fond
+        backgroundColor: '#a279a2', // Exemple de couleur de fond
         borderRadius: 5,
         marginTop: 20, // Ajustez selon l'espacement souhaité
         alignItems: 'center',

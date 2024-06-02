@@ -40,7 +40,7 @@ function Add({navigation}) {
         }else{
             try {
 
-                await addDoc(collection(db, "Products"), {
+                await addDoc(collection(db, "Requests"), {
                     ID: scannedData,
                     Nom: productName,
                     Pays: country,
