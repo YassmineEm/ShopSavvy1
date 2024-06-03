@@ -8,7 +8,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getFirestore, collection } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
-import { getStorage } from "firebase/storage";
+import { getStorage} from "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyDTETlCetLThB_xkGSi-cPzctRqZGG_G2E",
   authDomain: "shopsavvy1-470e8.firebaseapp.com",

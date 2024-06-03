@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, Text, Image, StyleSheet, TextInput, Pressable, Alert,TouchableOpacity ,View} from 'react-native';
 import { ref, onValue, update } from 'firebase/database';
-import { database} from '../../config/firebase';
+import { database , storage} from '../../config/firebase';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import * as ImagePicker from 'expo-image-picker';
-import { getDownloadURL, uploadBytes, deleteObject } from 'firebase/storage';
-import storage from '@react-native-firebase/storage';
+import { getDownloadURL, uploadBytes, deleteObject} from 'firebase/storage';
 
 function Profile({ navigation }) {
     const [user, setUser] = useState(null);
@@ -24,7 +23,8 @@ function Profile({ navigation }) {
                     console.log('Data from Firebase:', data);
                     setUser(data);
                     setImage(data.image || null);
-                });
+            });
+            fetchProfileImage();
             } else {
                 setUser(null);
             }
@@ -33,22 +33,29 @@ function Profile({ navigation }) {
     const uploadImageToFirebaseStorage = async (uri) => {
         const auth = getAuth();
         const currentUser = auth.currentUser;
-    
+
         if (!currentUser) {
             console.error('User not authenticated');
             return;
         }
-    
+
         if (!uri) {
             console.error('No image URI provided');
             Alert.alert('Erreur', 'Aucune image sélectionnée');
             return;
         }
-    
+
         try {
-            console.log('Uploading image to Firebase Storage:', uri);
-            let filename = uri.substring(uri.lastIndexOf('/') + 1);
-            await storage().ref(filename).putFile(uri);
+            const response = await fetch(uri);
+            const blob = await response.blob();
+            const storageRef = ref(storage, `images/${currentUser.uid}`);
+
+            await uploadBytes(storageRef, blob);
+            const downloadURL = await getDownloadURL(storageRef);
+
+            await update(ref(database, `users/${currentUser.uid}`), { image: downloadURL });
+            setImage(downloadURL);
+            Alert.alert('Succès', 'Image téléchargée avec succès.');
         } catch (error) {
             console.error('Erreur lors de l\'envoi de l\'image vers Firebase Storage : ', error);
             Alert.alert('Erreur', 'Une erreur est survenue lors de l\'envoi de l\'image.');
@@ -122,7 +129,16 @@ function Profile({ navigation }) {
             Alert.alert('Erreur', 'Une erreur est survenue lors de la suppression de l\'image.');
         }
     };
-
+    const fetchProfileImage = async () => {
+        try {
+          const userId = user.uid;
+          const imageRef = ref(storage, `images/${userId}`);
+          const imageUrl = await getDownloadURL(imageRef);
+          setImage(imageUrl);
+        } catch (error) {
+          console.error('Erreur lors de la récupération de l\'image de profil:', error);
+        }
+      };
     const showOptions = () => {
         Alert.alert(
             'Options',
@@ -168,7 +184,7 @@ function Profile({ navigation }) {
                   <Image source={require('../assets/left.png')} style={styles.icon3}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.user1}> 
-                  <Image source={require('../assets/languages.png')} style={styles.icon}/>
+                  <Image source={require('../assets/languages.png')} style={styles.icon} onPress={() => navigation.navigate('LanguageSelectionScreen')}/>
                   <Text style={styles.user1Text}>Language</Text>
                   <Image source={require('../assets/left.png')} style={styles.icon4}/>
                 </TouchableOpacity>
