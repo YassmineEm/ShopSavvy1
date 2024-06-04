@@ -4,7 +4,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, doc, getDoc, setDoc } from 'firebase/firestore';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getCurrentUser } from '../../config/firebase';
-
+import Header from './Header'; 
 const firebaseConfig = {
 
   apiKey: "AIzaSyDTETlCetLThB_xkGSi-cPzctRqZGG_G2E",
@@ -23,12 +23,13 @@ const ProductsPage = ({ navigation }) => {
   const [cartItems, setCartItems] = useState([]);
   const [db, setDb] = useState(null);
   const [cartItemCount, setCartItemCount] = useState(0);
+  
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
 
     const app = initializeApp(firebaseConfig);
 
-    // Obtenir l'instance Firestore
     const firestoreDb = getFirestore(app);
     setDb(firestoreDb);
     const fetchCartItems = async () => {
@@ -70,8 +71,9 @@ const ProductsPage = ({ navigation }) => {
           id: doc.id,
           ...doc.data()
         }));
-
         setProducts(productsData);
+        setFilteredProducts(productsData);
+        
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -120,6 +122,20 @@ const ProductsPage = ({ navigation }) => {
       console.error("User is not logged in or db is not initialized.");
     }
   };
+  const handleSearch = (query) => {
+    if (query.trim() === '') {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter(product =>
+        product.Nom.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    }
+  };
+  const handleProductPress = (productId) => {
+    console.log('product pressed');
+    navigation.navigate('ProductDetails', { productId });
+  };
   const toggleFavorite = async (item) => {
     const user = getCurrentUser();
     if (user && db) {
@@ -154,23 +170,14 @@ const ProductsPage = ({ navigation }) => {
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-     <View style={styles.headerContainer}>
-        <TextInput
-          style={styles.searchBar}
-          placeholder="Search..."
-        />
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Favorite', { favoriteItems })}
-          style={styles.heartButton}
-        >
-          <Image source={require('../assets/heart-red.png')} style={styles.heartImage} />
-        </TouchableOpacity>
-      </View>
+       <Header navigation={navigation} favoriteItems={favoriteItems} onSearch={handleSearch}/>
 
       <FlatList
-        data={products}
+      data={filteredProducts}
+      
         renderItem={({ item }) => (
-          <View style={styles.productContainer}>
+          
+          <TouchableOpacity style={styles.productContainer} onPress={() => handleProductPress(item.id)} >
             <View style={styles.imageContainer}>
               <Image source={{ uri: item.Image }} style={styles.productImage} />
               <TouchableOpacity style={styles.favoriteIcon} onPress={() => toggleFavorite(item)}>
@@ -185,7 +192,7 @@ const ProductsPage = ({ navigation }) => {
             <TouchableOpacity style={styles.button} onPress={() => addToCart(item)}>
               <Text style={styles.buttonText}>Add to Cart</Text>
             </TouchableOpacity>
-          </View>
+          </TouchableOpacity>
         )}
         keyExtractor={item => item.id}
         numColumns={2}
@@ -202,6 +209,7 @@ const ProductsPage = ({ navigation }) => {
           </View>
         )}
       </TouchableOpacity>
+     
     </SafeAreaView>
   
 

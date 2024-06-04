@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import auth from '@react-native-firebase/auth';
+import { auth } from '../../config/firebase';
 
 const ChangePassword = ({ navigation }) => {
   const [currentPassword, setCurrentPassword] = useState('');
