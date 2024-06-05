@@ -13,6 +13,7 @@ function Add({navigation}) {
     const [scannedData, setScannedData] = useState(null);
     const [hasPermission, setHasPermission] = useState(null);
     const [showScanner, setShowScanner] = useState(false);
+    const [image,setImage]=useState('');
 
     
     useEffect(() => {
@@ -45,7 +46,8 @@ function Add({navigation}) {
                     Nom: productName,
                     Pays: country,
                     Prix: price,
-                    Constituants: constituants
+                    Constituants: constituants,
+                    Image: image,
                 } , { id: scannedData });
                 
                 setProductName('');
@@ -53,6 +55,7 @@ function Add({navigation}) {
                 setPrice('');
                 setConstituants('');
                 setID('');
+                setImage('');
                 setScannedData(null);
                 setShowScanner(false);
             } catch (error) {
@@ -102,6 +105,13 @@ function Add({navigation}) {
                     placeholder="Entrez les constituants ici"
                     style={styles.input}
             />  
+             <TextInput
+                    type="text"
+                    value={image}
+                    onChangeText={setImage}
+                    placeholder="Entrer lien d'Image"
+                    style={styles.input}
+            />
             {
                 error ? (
                 <Text style={styles.errorText}>{error}</Text>
@@ -138,7 +148,7 @@ const styles = StyleSheet.create({
         marginLeft:48,
         width: 295, 
         padding: 10,
-        marginTop: 25,
+        marginTop: 15,
         marginBottom: 10,
         borderWidth: 1,
         borderColor: '#EF09F7', 
@@ -164,7 +174,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize:20,
         marginLeft:34,
-        marginTop:4,
+        marginTop:2,
     },
     errorText:{
         fontSize:20,

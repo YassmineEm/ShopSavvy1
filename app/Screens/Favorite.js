@@ -65,14 +65,14 @@ const Favorite = ({ navigation }) => {
  
   return (
     <View style={styles.container}>
-    <Text style={styles.title}>Favorite</Text>
-    {favoriteItems.length === 0 ? (
+      <Text style={styles.title}>Favorite</Text>
+      {favoriteItems.length === 0 ? (
       <Text style={styles.emptyMessage}>No favorite items available.</Text>
     ) : (
       <FlatList
         data={favoriteItems}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()} // Assuming item has an id property
+        keyExtractor={(item) => item.Nom.toString()} 
       />
     )}
   </View>

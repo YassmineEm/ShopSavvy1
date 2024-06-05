@@ -22,7 +22,8 @@ import ProductsPage from '../app/Screens/ProductsPage';
 import Cart from '../app/Screens/Cart';
 import Favorite from '../app/Screens/Favorite';
 import Help from '../app/Screens/Help';
-
+import  ProductDetails from '../app/Screens/ProductDetails';
+import Checkout from '../app/Screens/Checkout';
 const Stack = createNativeStackNavigator();
 
 
@@ -61,6 +62,8 @@ const RootStack = () => {
                     <Stack.Screen name='Cart' component={Cart}/>
                     <Stack.Screen name='Favorite' component={Favorite}/>
                     <Stack.Screen name='Help' component={Help}/>
+                    <Stack.Screen name='ProductDetails' component={ProductDetails}/>
+                    <Stack.Screen name='Checkout' component={Checkout}/>
                 </Stack.Navigator>
             </NavigationContainer>
         );

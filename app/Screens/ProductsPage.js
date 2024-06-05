@@ -30,6 +30,7 @@ const ProductsPage = ({ navigation }) => {
 
     const app = initializeApp(firebaseConfig);
 
+    // Obtenir l'instance Firestore
     const firestoreDb = getFirestore(app);
     setDb(firestoreDb);
     const fetchCartItems = async () => {

@@ -2,10 +2,6 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, Dimensions ,TouchableOpacity} from 'react-native';
 
 function Welcome({navigation}) {
-    const handleWelcome = () => {
-        console.log(Welcome); 
-        navigation.navigate('Signup')
-    };
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.Welcome}>

@@ -59,6 +59,12 @@ const Cart = ({ navigation, route }) => {
         )}
         keyExtractor={(item, index) => index.toString()}
       />
+      <TouchableOpacity
+        style={styles.checkoutButton}
+        onPress={() => navigation.navigate('Checkout', { items })}
+      >
+        <Text style={styles.checkoutButtonText}>Check Out</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -107,6 +113,20 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     marginLeft: 5,
+  },
+  quantity: {
+    fontSize: 16,
+  },
+  checkoutButton: {
+    marginTop: 20,
+    padding: 15,
+    backgroundColor: 'green',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  checkoutButtonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
 
