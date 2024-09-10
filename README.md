@@ -15,18 +15,8 @@
 
           https://www.figma.com/file/PvlRLamSolWNizZN018rDV/Untitled?type=design&node-id=38%3A11&mode=design&t=0MklWeVcyTWKXAHG-1
 <div class="images-container">
-    <img src="assets/images/asset10.jpeg">
-    <img src="assets//images/asset9.jpeg">
-    <img src="assets//images/asset8.jpeg">
-    <img src="assets//images/asset7.jpeg">
-    <img src="assets//images/asset4.jpeg">
-    <img src="assets//images/asset6.jpeg">
-    <img src="assets//images/ASSET2.jpeg">
-    <img src="assets//images/assets3.jpeg">
-    <img src="assets//images/pro1.jpeg">
-    <img src="assets//images/pro2.jpeg">
-    <img src="assets//images/pro3.jpeg">
-    <img src="assets//images/pro4.jpeg">
-    <img src="assets//images/pro5.jpeg">
+    <img src="app/assets/1.jpeg">
+    <img src="app/assets/2.jpeg">
+    <img src="app/assets/3.jpeg">
 </div>
 
